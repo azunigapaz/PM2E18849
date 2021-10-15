@@ -66,7 +66,11 @@ public class ActivityConsultaPaises extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (id.length() > 0 && nombrepais.length() > 0 && codigopais.length() > 0) {
-                    EliminarConsultaPais();
+                    try{
+                        EliminarConsultaPais();
+                    }catch (Exception ex){
+                        ex.toString();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Debe de ingresar un id para realizar la busqueda y tener todos los campos para eliminar el registro",Toast.LENGTH_LONG).show();
                 }
@@ -114,17 +118,15 @@ public class ActivityConsultaPaises extends AppCompatActivity {
 
     private void EliminarConsultaPais() {
 
-        try {
             SQLiteDatabase db = conexion.getWritableDatabase();
             String [] params = { id.getText().toString() };
             String wherecond = Transacciones.idpais + "=?";
             db.delete(Transacciones.tablapaises, wherecond, params);
             Toast.makeText(getApplicationContext(), "Dato eliminado", Toast.LENGTH_LONG).show();
             ClearScreen();
-        } catch (Exception ex) {
+
             Toast.makeText(getApplicationContext(), "El registro no se puede eliminar porque el dato esta conectado a un contacto.", Toast.LENGTH_LONG).show();
 
-        }
     }
 
     private void ClearScreen() {
