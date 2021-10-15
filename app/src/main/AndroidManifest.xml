@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PM2E18849">
         <activity
+            android:name=".ActivityAccionContacto"
+            android:exported="false" />
+        <activity
             android:name=".ActivityConsultaContactos"
             android:exported="true" />
         <activity

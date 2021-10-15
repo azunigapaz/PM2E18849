@@ -104,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // llamamos la consulta de contactos
+        btnlistacontactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ActivityConsultaContactos.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     // metodos para obtener datos del combobox
