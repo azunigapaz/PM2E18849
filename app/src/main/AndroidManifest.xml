@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PM2E18849">
         <activity
+            android:name=".ActivityConsultaContactos"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityConsultaPaises"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityRegistroPaises"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
