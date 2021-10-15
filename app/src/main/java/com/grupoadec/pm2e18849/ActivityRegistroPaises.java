@@ -34,7 +34,12 @@ public class ActivityRegistroPaises extends AppCompatActivity {
         btnagregarpais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AgregarPais();
+                if(txtnombrepais.length() > 0 && txtcodigopais.length() > 0){
+                    AgregarPais();
+                }else  {
+                    Toast.makeText(getApplicationContext(),"El nombre y el codigo de pais no puede estar vacio: id: ",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
