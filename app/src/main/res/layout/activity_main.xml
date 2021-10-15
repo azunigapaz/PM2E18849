@@ -16,10 +16,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/UTH" />
+        app:srcCompat="@drawable/uthlogo" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgagregarpais"
         android:layout_width="34dp"
         android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -154,7 +154,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nota: "
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="422dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
