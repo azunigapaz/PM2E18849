@@ -33,8 +33,8 @@ public class Transacciones {
 
     // tabla contactos
     public static final String CreateTableContactos = "CREATE TABLE contactos (idcontacto INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "idpais INTEGER NOT NULL, FOREIGN KEY (idpais) REFERENCES paises (idpais)," +
-            "nombrecontacto TEXT, numerocontacto TEXT, notacontacto TEXT)";
+            "nombrecontacto TEXT, numerocontacto TEXT, notacontacto TEXT," +
+            "idpais INTEGER, FOREIGN KEY (idpais) REFERENCES paises (idpais))";
 
     public static final String DropTableContactos = "DROP TABLE ID EXISTS contactos";
 
