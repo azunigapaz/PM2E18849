@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class ActivityConsultaContactos extends AppCompatActivity {
     ArrayList<String> ArregloContactos;
     Contactos list_contactos = null;
     EditText txtbuscarcontactolista;
+    ImageView imgreturnlc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class ActivityConsultaContactos extends AppCompatActivity {
 
         conexion = new SQLiteConexion(this, Transacciones.NameDatabase,null,1);
         lvconsultacontactos = (ListView) findViewById(R.id.lvconsultacontactos);
+
+        imgreturnlc = (ImageView) findViewById(R.id.imgreturnlc);
 
         ObtenerListaContactos();
 
@@ -64,12 +68,21 @@ public class ActivityConsultaContactos extends AppCompatActivity {
             }
         });
 
+        imgreturnlc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         // evento para capturar los datos al seleccionar un item
         lvconsultacontactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Contactos c = lista.get(i);
-                Toast.makeText(getApplicationContext(),"id: " + c.getIdcontacto() + " Nombre: " + c.getNombrecontacto() + " Numero: " + c.getNumerocontacto(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"id: " + c.getIdcontacto() + " Nombre: " + c.getNombrecontacto() + " Numero: " + c.getNumerocontacto(),Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(),ActivityAccionContacto.class);
 
@@ -122,4 +135,5 @@ public class ActivityConsultaContactos extends AppCompatActivity {
         }
 
     }
+
 }

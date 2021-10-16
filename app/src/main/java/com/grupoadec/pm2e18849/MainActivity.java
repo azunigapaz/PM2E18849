@@ -1,8 +1,10 @@
 package com.grupoadec.pm2e18849;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     String fkidpaiscmb;
 
+    AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         btnagregarcontacto = (Button) findViewById(R.id.btnagregarcontacto);
         btnlistacontactos = (Button) findViewById(R.id.btnlistacontactos);
 
+        builder = new AlertDialog.Builder(this);
+
         // Accion agregar paises
         imgagregarpais.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +86,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(txtnombrecontacto.length()>0 && txtnumerocontacto.length()>0 && txtnotacontacto.length()>0){
-                    AgregarContacto();
+
+                    //Mensaje de dialogo
+                    builder.setMessage("Desea registrar el contacto " + txtnombrecontacto.getText() + " ?")
+                            .setCancelable(false)
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    AgregarContacto();
+                                    Toast.makeText(getApplicationContext(),"Contacto registrado",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //  Action for 'NO' Button
+                                    dialog.cancel();
+                                    Toast.makeText(getApplicationContext(),"No se registro el contacto",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    //Creating dialog box
+                    AlertDialog alert = builder.create();
+                    //Setting the title manually
+                    alert.setTitle("Alerta");
+                    alert.show();
+
                 }else{
                     Toast.makeText(getApplicationContext(),"El nombre, numero y notas del contacto no pueden estar vacios: id: ",Toast.LENGTH_LONG).show();
                 }
@@ -163,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
         Long resultado = db.insert(Transacciones.tablacontactos, Transacciones.idcontacto,valores);
 
-        Toast.makeText(getApplicationContext(),"Registro ingresado: id: " + resultado.toString(),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"Registro ingresado: id: " + resultado.toString(),Toast.LENGTH_LONG).show();
 
         db.close();
 
@@ -175,5 +205,26 @@ public class MainActivity extends AppCompatActivity {
         txtnumerocontacto.setText("");
         txtnotacontacto.setText("");
     }
+
+    // Ocultar navegacion
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
 
 }

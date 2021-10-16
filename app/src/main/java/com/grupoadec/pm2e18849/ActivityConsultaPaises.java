@@ -3,6 +3,7 @@ package com.grupoadec.pm2e18849;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class ActivityConsultaPaises extends AppCompatActivity {
         conexion = new SQLiteConexion(this, Transacciones.NameDatabase, null, 1);
 
         ImageView imgbuscarconsultapais = (ImageView) findViewById(R.id.imgbuscarconsultapais);
+        ImageView imgreturncp = (ImageView) findViewById(R.id.imgreturncp);
         Button btnactualizarconsultapais = (Button) findViewById(R.id.btnactualizarconsulta);
         Button btneliminarconsultapais = (Button) findViewById(R.id.btneliminarconsulta);
 
@@ -35,8 +37,15 @@ public class ActivityConsultaPaises extends AppCompatActivity {
         nombrepais = (EditText) findViewById(R.id.txtconsultanombrepais);
         codigopais = (EditText) findViewById(R.id.txtconsultacodigopais);
 
-        imgbuscarconsultapais.setOnClickListener(new View.OnClickListener() {
+        imgreturncp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivityRegistroPaises.class);
+                startActivity(intent);
+            }
+        });
 
+        imgbuscarconsultapais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (id.length() > 0) {
@@ -134,4 +143,5 @@ public class ActivityConsultaPaises extends AppCompatActivity {
         nombrepais.setText("");
         codigopais.setText("");
     }
+
 }
