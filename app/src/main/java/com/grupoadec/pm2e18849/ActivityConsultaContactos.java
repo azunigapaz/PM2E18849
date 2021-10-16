@@ -2,6 +2,7 @@ package com.grupoadec.pm2e18849;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -69,6 +70,16 @@ public class ActivityConsultaContactos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Contactos c = lista.get(i);
                 Toast.makeText(getApplicationContext(),"id: " + c.getIdcontacto() + " Nombre: " + c.getNombrecontacto() + " Numero: " + c.getNumerocontacto(),Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(),ActivityAccionContacto.class);
+
+                intent.putExtra("pxIdcontacto", c.getIdcontacto().toString());
+                intent.putExtra("pxNombre", c.getNombrecontacto());
+                intent.putExtra("pxNumero", c.getNumerocontacto().substring(5,c.getNumerocontacto().length()));
+                intent.putExtra("pxNota", c.getNotacontacto());
+
+                startActivity(intent);
+
             }
         });
 
